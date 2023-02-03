@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_action_home"
+        android:title="Home"/>
+    <item
+        android:id="@+id/nav_addMember"
+        android:icon="@drawable/ic_action_add"
+        android:title="Add Member"/>
+    <item
+        android:id="@+id/seeMembers"
+        android:icon="@drawable/ic_action_members"
+        android:title="See Members"/>
+
+
+</menu>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ClubRegistration</string>
+    <string-array name="item_names">
+        <item>Football</item>
+        <item>Basketball</item>
+        <item>Volleyball</item>
+        <item>Tennis</item>
+        <item>Chess</item>
+        <item>Music</item>
+    </string-array>
+</resources>

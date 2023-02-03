@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageFootball"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="38dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/messi"
+                app:layout_constraintEnd_toStartOf="@+id/imageVolleyball"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:id="@+id/txtFootball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/omer"
+                android:text="Football"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@id/imageFootball"
+                app:layout_constraintStart_toStartOf="@id/imageFootball"
+                app:layout_constraintTop_toBottomOf="@id/imageFootball" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageVolleyball"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/volleyball"
+                app:layout_constraintBottom_toBottomOf="@+id/imageFootball"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageFootball"
+                app:layout_constraintTop_toTopOf="@+id/imageFootball"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:id="@+id/txtVolleyball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/omer"
+                android:text="Volleyball"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageVolleyball"
+                app:layout_constraintStart_toStartOf="@+id/imageVolleyball"
+                app:layout_constraintTop_toBottomOf="@+id/imageVolleyball" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageBasketball"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="38dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/basketball"
+                app:layout_constraintEnd_toEndOf="@+id/imageFootball"
+                app:layout_constraintEnd_toStartOf="@+id/imageTennis"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFootball"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:id="@+id/txtBasketball"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/omer"
+                android:text="Basketball"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@id/imageBasketball"
+                app:layout_constraintStart_toStartOf="@id/imageBasketball"
+                app:layout_constraintTop_toBottomOf="@id/imageBasketball" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageTennis"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/tennis"
+                app:layout_constraintBottom_toBottomOf="@+id/imageBasketball"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageBasketball"
+                app:layout_constraintTop_toTopOf="@+id/imageBasketball"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:id="@+id/txtTennis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/omer"
+                android:text="TENNIS"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageTennis"
+                app:layout_constraintStart_toStartOf="@+id/imageTennis"
+                app:layout_constraintTop_toBottomOf="@+id/imageTennis" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/chessImage"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="38dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/chess"
+                app:layout_constraintEnd_toEndOf="@+id/imageBasketball"
+                app:layout_constraintEnd_toStartOf="@+id/imageMusic"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBasketball"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:id="@+id/txtChess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/omer"
+                android:text="Chess"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/chessImage"
+                app:layout_constraintStart_toStartOf="@+id/chessImage"
+                app:layout_constraintTop_toBottomOf="@+id/chessImage" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageMusic"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/muzik"
+                app:layout_constraintBottom_toBottomOf="@+id/chessImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/chessImage"
+                app:layout_constraintTop_toTopOf="@+id/chessImage"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:id="@+id/txtMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/omer"
+                android:text="MUSIC"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageMusic"
+                app:layout_constraintStart_toStartOf="@+id/imageMusic"
+                app:layout_constraintTop_toBottomOf="@+id/imageMusic" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageComputer"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="38dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/computer"
+                app:layout_constraintEnd_toEndOf="@+id/chessImage"
+                app:layout_constraintEnd_toStartOf="@+id/imageCooking"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtChess"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="38dp"
+                android:fontFamily="@font/omer"
+                android:text="Computer"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/imageComputer"
+                app:layout_constraintStart_toStartOf="@id/imageComputer"
+                app:layout_constraintTop_toBottomOf="@id/imageComputer" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageCooking"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cooking"
+                app:layout_constraintBottom_toBottomOf="@+id/imageComputer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/imageComputer"
+                app:layout_constraintTop_toTopOf="@+id/imageComputer"
+                app:shapeAppearance="@style/roundImageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="38dp"
+                android:fontFamily="@font/omer"
+                android:text="COOKING"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/imageCooking"
+                app:layout_constraintStart_toStartOf="@id/imageCooking"
+                app:layout_constraintTop_toBottomOf="@id/imageCooking" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</FrameLayout>
