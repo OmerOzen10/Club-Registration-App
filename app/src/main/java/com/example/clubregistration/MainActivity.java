@@ -1,31 +1,35 @@
 package com.example.clubregistration;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.PersistableBundle;
 import android.view.MenuItem;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ArrayList<members> members;
+    public static ArrayList<Members> members;
     public static final String TAG = "MainActivity";
 
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(naviListener);
-
-        getDataFireBase();
-
-
-
     }
 
     private NavigationBarView.OnItemSelectedListener naviListener =
@@ -65,28 +64,34 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-    private void getDataFireBase(){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("members").orderBy("id").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot dc:task.getResult()) {
-                        String firstName = dc.getString("firstName");
-                        String lastName = dc.getString("lastName");
-                        String email = dc.getString("email");
-                        String club = dc.getString("club");
-                        int id = dc.getLong("id").intValue();
-                        members.add(new members(firstName,lastName,email,club,id));
-                    }
-                    Log.d(TAG, "The data has been reached: ");
-                }else {
-                    Log.d(TAG, "Couldn't reach the data: ", task.getException());
-                }
-            }
-        });
-    }
-
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+//        super.onCreate(savedInstanceState, persistentState);
+//        recyclerView = findViewById(R.id.recView);
+//
+//        databaseReference = FirebaseDatabase.getInstance().getReference("members");
+//        members = new ArrayList<>();
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        adapter = new MyAdapter(this,members);
+//        recyclerView.setAdapter(adapter);
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+//                    Members member = dataSnapshot.getValue(Members.class);
+//                    members.add(member);
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+//
+//    }
 }
 
 

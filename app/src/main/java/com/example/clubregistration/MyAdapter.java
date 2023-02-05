@@ -9,17 +9,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.auth.User;
-
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
 
-    ArrayList<members> members;
+    ArrayList<Members> members;
 
-    public MyAdapter(Context context, ArrayList<com.example.clubregistration.members> members) {
+    public MyAdapter(Context context, ArrayList<Members> members) {
         this.context = context;
         this.members = members;
     }
@@ -34,7 +32,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        members member = members.get(position);
+        Members member = members.get(position);
         holder.firstName.setText(member.getFirstName());
         holder.lastName.setText(member.getLastName());
         holder.club.setText(member.getClub());
@@ -61,4 +59,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         }
     }
+
+
 }

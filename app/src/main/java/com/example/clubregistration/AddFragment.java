@@ -1,6 +1,5 @@
 package com.example.clubregistration;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +15,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddFragment extends Fragment {
 
@@ -25,6 +27,7 @@ public class AddFragment extends Fragment {
     EditText edtName, edtLast, edtEmail;
     Spinner spinner;
     DatabaseReference databaseReference;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class AddFragment extends Fragment {
 
             databaseReference = FirebaseDatabase.getInstance().getReference();
 
+
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -46,14 +50,16 @@ public class AddFragment extends Fragment {
             });
         }
 
-    private  void InsertData(){
+    private int id = 0;
+
+    private void InsertData(){
         String name = edtName.getText().toString();
         String lastName = edtLast.getText().toString();
         String email = edtEmail.getText().toString();
         String club = spinner.getSelectedItem().toString();
+        id++;
 
-
-        members members = new members(name,lastName,email,club,id);
+        Members members = new Members(name,lastName,email,club,id);
         databaseReference.child("members").child(String.valueOf(id)).setValue(members)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -64,13 +70,14 @@ public class AddFragment extends Fragment {
 
                     }
                 });
-
-
     }
+
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_add,container,false);
+
     }
 }

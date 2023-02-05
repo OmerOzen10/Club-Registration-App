@@ -1,13 +1,14 @@
 package com.example.clubregistration;
 
-public class members {
+public class Members {
     String firstName;
     String lastName;
     String email;
     String club;
-    Integer id;
+    int id;
+    public Members(){}
 
-    public members(String firstName, String lastName, String email, String club, Integer id) {
+    public Members(String firstName, String lastName, String email, String club, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -47,19 +48,21 @@ public class members {
         this.club = club;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
     @Override
     public String toString() {
-        return "members{" +
+        return "Members{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", club='" + club + '\'' +
                 '}';
     }
 }
