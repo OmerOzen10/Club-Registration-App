@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -24,8 +26,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ArrayList<Members> members;
+    public static ArrayList<Members> membersList;
     public static final String TAG = "MainActivity";
+
+    public static DatabaseReference databaseReference;
+
+
 
 
 
@@ -36,11 +42,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).addToBackStack(null).commit();
 
-        members = new ArrayList<>();
+        membersList = new ArrayList<>();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnItemSelectedListener(naviListener);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("members");
+
+        readData();
+
     }
+
 
     private NavigationBarView.OnItemSelectedListener naviListener =
             new NavigationBarView.OnItemSelectedListener() {
@@ -64,34 +76,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
-//    @Override
-//    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-//        super.onCreate(savedInstanceState, persistentState);
-//        recyclerView = findViewById(R.id.recView);
-//
-//        databaseReference = FirebaseDatabase.getInstance().getReference("members");
-//        members = new ArrayList<>();
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new MyAdapter(this,members);
-//        recyclerView.setAdapter(adapter);
-//
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-//                    Members member = dataSnapshot.getValue(Members.class);
-//                    members.add(member);
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//
-//    }
+
+    public static void readData(){
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                membersList.clear();
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                    Members members = dataSnapshot1.getValue(Members.class);
+                    membersList.add(members);
+                }
+
+                // ..
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        databaseReference.addValueEventListener(postListener);
+
+    }
 }
 
 

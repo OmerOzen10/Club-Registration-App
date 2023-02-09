@@ -21,48 +21,22 @@ import java.util.ArrayList;
 
 public class SeeFragment extends Fragment {
     RecyclerView recyclerView;
-    ArrayList<Members>members;
-    DatabaseReference databaseReference;
-    MyAdapter adapter;
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recView);
-        databaseReference = FirebaseDatabase.getInstance().getReference("members");
-        members = new ArrayList<>();
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        adapter = new MyAdapter(view.getContext(),members);
-        recyclerView.setAdapter(adapter);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Members members1 = dataSnapshot.getValue(Members.class);
-                    members.add(members1);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    public static MyAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_see,container,false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.recView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        adapter = new MyAdapter(view.getContext(),MainActivity.membersList);
+        recyclerView.setAdapter(adapter);
 
     }
 }

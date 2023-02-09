@@ -15,11 +15,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
 
-    ArrayList<Members> members;
+    ArrayList<Members> membersList;
 
     public MyAdapter(Context context, ArrayList<Members> members) {
         this.context = context;
-        this.members = members;
+        this.membersList = members;
     }
 
     @NonNull
@@ -31,18 +31,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        Members member = members.get(position);
+        Members member = membersList.get(position);
         holder.firstName.setText(member.getFirstName());
         holder.lastName.setText(member.getLastName());
         holder.club.setText(member.getClub());
         holder.email.setText(member.getEmail());
-
     }
 
     @Override
     public int getItemCount() {
-        return members.size();
+        return membersList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -59,6 +57,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         }
     }
-
 
 }

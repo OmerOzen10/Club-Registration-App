@@ -1,5 +1,7 @@
 package com.example.clubregistration;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,20 +46,16 @@ public class AddFragment extends Fragment {
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
-                    InsertData();
-                }
+                public void onClick(View view) {InsertData();}
             });
         }
-
-    private int id = 0;
 
     private void InsertData(){
         String name = edtName.getText().toString();
         String lastName = edtLast.getText().toString();
         String email = edtEmail.getText().toString();
         String club = spinner.getSelectedItem().toString();
-        id++;
+        int id = MainActivity.membersList.size()+1;
 
         Members members = new Members(name,lastName,email,club,id);
         databaseReference.child("members").child(String.valueOf(id)).setValue(members)
